@@ -26,7 +26,7 @@ jetstream-http:dev
 sudo docker run -d --name gradio \
 --net=container:network_anchor \
 -e CONTEXT_PATH="/generate" \
--e HOST="http://jetstream-http:8000" \
+-e HOST="http://127.0.0.1:8000" \
 -e LLM_ENGINE="max" \
 -e MODEL_ID="gemma" \
 -e USER_PROMPT="<start_of_turn>user\nprompt<end_of_turn>\n" \
