@@ -1,9 +1,5 @@
-
-docker run -d --name network_anchor \
-    -p 80:7860 \
-    registry.k8s.io/pause:3.9
 sudo docker run -d --name maxengine-server \
-  --net=container:network_anchor \
+  --net=host \
   maxengine-server:dev \
   --model_name=gemma3-27b \
   --tokenizer_path=assets/tokenizer.gemma3 \
@@ -20,11 +16,11 @@ sudo docker run -d --name maxengine-server \
   --weight_dtype=bfloat16 \
   --load_parameters_path=gs://fbs-usc1/unscanned_chkpt_233/checkpoints/0/items
 
-sudo docker run -d --name jetstream-http --net=container:network_anchor \
+sudo docker run -d --name jetstream-http --net=host \
 jetstream-http:dev
 
 sudo docker run -d --name gradio \
---net=container:network_anchor \
+--net=host \
 -e CONTEXT_PATH="/generate" \
 -e HOST="http://127.0.0.1:8000" \
 -e LLM_ENGINE="max" \
