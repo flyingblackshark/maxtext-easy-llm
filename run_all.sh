@@ -1,4 +1,4 @@
-sudo docker run -d --name maxengine-server \
+sudo docker run --name maxengine-server \
   --net=host \
   maxengine-server:dev \
   --model_name=gemma3-27b \
