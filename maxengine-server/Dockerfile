@@ -26,4 +26,4 @@ COPY maxengine_server_entrypoint.sh /usr/bin/
 
 RUN chmod +x /usr/bin/maxengine_server_entrypoint.sh
 
-#ENTRYPOINT ["/usr/bin/maxengine_server_entrypoint.sh"]
+ENTRYPOINT ["/usr/bin/maxengine_server_entrypoint.sh"]
