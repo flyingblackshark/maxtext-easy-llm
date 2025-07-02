@@ -4,7 +4,7 @@
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV MAXTEXT_VERSION=jetstream-v0.2.2
+ENV MAXTEXT_VERSION=main
 
 RUN apt -y update && apt install -y --no-install-recommends \
     ca-certificates \
