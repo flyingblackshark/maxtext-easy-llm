@@ -1,20 +1,23 @@
 sudo docker run --name maxengine-server \
+  --privileged \
   --net=host \
   maxengine-server:dev \
-  --model_name=gemma3-27b \
-  --tokenizer_path=assets/tokenizer.gemma3 \
-  --per_device_batch_size=4 \
-  --max_prefill_predict_length=1024 \
-  --max_target_length=2048 \
-  --async_checkpointing=false \
-  --ici_fsdp_parallelism=1 \
-  --ici_autoregressive_parallelism=-1 \
-  --ici_tensor_parallelism=1 \
-  --scan_layers=false \
-  --weight_dtype=bfloat16 \
-  --load_parameters_path=gs://fbs-usc1/unscanned_chkpt_233/checkpoints/0/items
-sudo docker run -d --name jetstream-http --net=host \
-jetstream-http:dev
+  model_name=gemma3-27b \
+  tokenizer_path=assets/tokenizer.gemma3 \
+  per_device_batch_size=4 \
+  max_prefill_predict_length=1024 \
+  max_target_length=2048 \
+  attention=dot_product \
+  enable_model_warmup=true \
+  async_checkpointing=false \
+  ici_fsdp_parallelism=1 \
+  ici_autoregressive_parallelism=-1 \
+  ici_tensor_parallelism=1 \
+  scan_layers=false \
+  weight_dtype=bfloat16 \
+  load_parameters_path=gs://fbs-usc1/unscanned_chkpt_233/checkpoints/0/items
+
+sudo docker run -d --name jetstream-http --net=host jetstream-http:dev
 
 sudo docker run -d --name gradio \
 --net=host \

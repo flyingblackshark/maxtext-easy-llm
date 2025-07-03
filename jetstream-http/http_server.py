@@ -33,7 +33,7 @@ import pydantic
 class GenerateRequest(pydantic.BaseModel):
   server: Optional[str] = "127.0.0.1"
   port: Optional[str] = "9000"
-  session_cache: Optional[str] = ""
+  #session_cache: Optional[str] = ""
   prompt: Optional[str] = "This is an example prompt"
   priority: Optional[int] = 0
   max_tokens: Optional[int] = 100
@@ -86,9 +86,9 @@ async def generate(request: GenerateRequest):
   try:
     stream = request.stream
     request = jetstream_pb2.DecodeRequest(
-        session_cache=request.session_cache,
+        #session_cache=request.session_cache,
         text_content=jetstream_pb2.DecodeRequest.TextContent(text=request.prompt),
-        priority=request.priority,
+        #priority=request.priority,
         max_tokens=request.max_tokens,
     )
 
